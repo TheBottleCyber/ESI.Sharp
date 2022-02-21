@@ -1,4 +1,4 @@
-![Workflow](https://github.com/TheBottleCyber/ESI.Sharp/actions/workflows/dotnet.yml/badge.svg)
+[![.NET Sonar Scanner](https://github.com/TheBottleCyber/ESI.Sharp/actions/workflows/sonar.yml/badge.svg)](https://github.com/TheBottleCyber/ESI.Sharp/actions/workflows/sonar.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=coverage)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
