@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Authors>TheBottle</Authors>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageProjectUrl>https://github.com/TheBottleCyber/ESI.Sharp</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TheBottleCyber/ESI.Sharp</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Description>ESI.Sharp is an unofficial .NET API Wrapper for the EVE Online ESI with powerfully commented endpoints and testing as much as possible</Description>
+        <Version>1.0.0</Version>
+        <PackageVersion>$(Version)</PackageVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="RestSharp" Version="107.3.0" />
+        <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="107.3.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    </ItemGroup>
+
+</Project>
