@@ -1,8 +1,15 @@
+# Basic set up for three package managers
+
 version: 2
-updates: 
-  # Enable version updates for nuget 
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for nuget
   - package-ecosystem: "nuget"
-  # Look for NuGet dependency info from the `root` directory
-  directory: "/" 
-  # Check the nuget registry for updates every day (weekdays) schedule: 
-  interval: "daily"
+    directory: "/"
+    schedule:
+      interval: "daily"
