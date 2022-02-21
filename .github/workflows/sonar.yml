@@ -18,14 +18,14 @@ jobs:
         with:
           fetch-depth: 0
       - name: Cache SonarCloud packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.7
         with:
           path: ~\sonar\cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache SonarCloud scanner
         id: cache-sonar-scanner
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.7
         with:
           path: .\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
@@ -41,7 +41,7 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - name: Cache NuGet packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.7
         id: cache-nuget
         with:
           path: ~/.nuget/packages
