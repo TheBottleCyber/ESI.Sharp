@@ -27,11 +27,11 @@ namespace ESI.Sharp.Models
     /// </summary>
     public class EsiConfig
     {
-        private readonly string _clientId = string.Empty;
-        private readonly string _secretKey = string.Empty;
-        private readonly string _callbackUrl = string.Empty;
-        private readonly string _userAgent = string.Empty;
-        private readonly string _esiEndpoint = "https://esi.evetech.net/latest/";
+        private string _clientId = string.Empty;
+        private string _secretKey = string.Empty;
+        private string _callbackUrl = string.Empty;
+        private string _userAgent = string.Empty;
+        private string _esiEndpoint = "https://esi.evetech.net/latest/";
 
         /// <summary>
         /// Client Id property from ESI application authentication settings
@@ -40,7 +40,7 @@ namespace ESI.Sharp.Models
         public string ClientId
         {
             get => _clientId;
-            init
+            set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(ClientId));
@@ -56,7 +56,7 @@ namespace ESI.Sharp.Models
         public string SecretKey 
         {
             get => _secretKey;
-            init
+            set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(SecretKey));
@@ -72,7 +72,7 @@ namespace ESI.Sharp.Models
         public string CallbackUrl
         {
             get => _callbackUrl;
-            init
+            set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(CallbackUrl));
@@ -88,7 +88,7 @@ namespace ESI.Sharp.Models
         public string UserAgent
         {
             get => _userAgent;
-            init
+            set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(UserAgent));
@@ -104,7 +104,7 @@ namespace ESI.Sharp.Models
         public string EsiEndpoint
         {
             get => _esiEndpoint;
-            init
+            set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(EsiEndpoint));
@@ -117,7 +117,7 @@ namespace ESI.Sharp.Models
         /// Specifies which server to call the endpoints from, default is Tranquility
         /// </summary>
         /// <exception cref="ArgumentException">throws when trying set field null or empty</exception>
-        public EsiSource EsiSource { get; init; } = EsiSource.Tranquility;
+        public EsiSource EsiSource { get; set; } = EsiSource.Tranquility;
 
         /// <summary>
         /// Initialize EsiConfig for using it in EsiClient

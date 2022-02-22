@@ -20,7 +20,7 @@ You can install **ESI.Sharp** as [a nuget package](https://www.nuget.org/package
 <br>
 `dotnet add package ESI.Sharp`
 
-**ESI.Sharp** is a .NET Core Library with support for .NET Core 5.0+ (.NET Core 6.0 also included).
+**ESI.Sharp** is a .NET Standard 2.0 Library with support for .NET Core 5.0+
 
 ## Usage
 You can instantiate the client in this manner:
