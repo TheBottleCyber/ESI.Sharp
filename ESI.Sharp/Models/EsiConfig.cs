@@ -31,7 +31,7 @@ namespace ESI.Sharp.Models
         private readonly string _secretKey = string.Empty;
         private readonly string _callbackUrl = string.Empty;
         private readonly string _userAgent = string.Empty;
-        private readonly string _esiEndpoint = "https://esi.evetech.net/";
+        private readonly string _esiEndpoint = "https://esi.evetech.net/latest/";
 
         /// <summary>
         /// Client Id property from ESI application authentication settings

@@ -42,20 +42,29 @@ namespace ESI.Sharp
         /// </summary>
         /// <param name="esiConfig">EsiConfig object</param>
         /// <exception cref="ArgumentNullException">throws when trying set <see cref="EsiConfig"/> parameter null</exception>
-        public EsiClient(EsiConfig esiConfig)
+        public EsiClient(EsiConfig esiConfig) : this(esiConfig, new RestClientOptions()) { }
+
+        /// <summary>
+        /// Initialize ESI api client by <see cref="EsiConfig"/> and <see cref="RestClientOptions"/>
+        /// </summary>
+        /// <param name="esiConfig">EsiConfig object</param>
+        /// <param name="restClientOptions">RestClientOptions object</param>
+        /// <exception cref="ArgumentNullException">throws when trying set parameters null</exception>
+        public EsiClient(EsiConfig esiConfig, RestClientOptions restClientOptions)
         {
-            var config = esiConfig ?? throw new ArgumentNullException(nameof(esiConfig), "EsiClient constructor parameter cannot be null");
+            if (esiConfig == null)
+                throw new ArgumentNullException(nameof(esiConfig), "EsiClient constructor parameter cannot be null");
 
-            var options = new RestClientOptions(esiConfig.EsiEndpoint)
-            {
-                Timeout = 5000,
-                UserAgent = esiConfig.UserAgent,
-            };
+            if (restClientOptions == null)
+                throw new ArgumentNullException(nameof(restClientOptions), "EsiClient constructor parameter cannot be null");
 
-            var restClient = new RestClient(options).AddDefaultHeader(KnownHeaders.Accept, "application/json")
-                                                    .AddDefaultHeader("Cache-Control", "no-cache")
-                                                    .UseNewtonsoftJson()
-                                                    .AddDefaultQueryParameter("datasource", config.EsiSource.ToEsiValue());
+            restClientOptions.BaseUrl = new Uri(esiConfig.EsiEndpoint);
+            restClientOptions.UserAgent = esiConfig.UserAgent;
+
+            var restClient = new RestClient(restClientOptions).AddDefaultHeader(KnownHeaders.Accept, "application/json")
+                                                              .AddDefaultHeader("Cache-Control", "no-cache")
+                                                              .UseNewtonsoftJson()
+                                                              .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToEsiValue());
 
             var executor = new EsiEndpointExecutor(restClient, this);
 

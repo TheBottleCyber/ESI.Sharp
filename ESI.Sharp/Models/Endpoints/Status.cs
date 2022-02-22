@@ -38,5 +38,15 @@ namespace ESI.Sharp.Models.Endpoints
         /// </summary>
         [JsonProperty("vip")]
         public bool VIP { get; set; }
+
+        public Status() { }
+
+        public Status(int players, string serverVersion, DateTime startTime, bool vip)
+        {
+            Players = players;
+            ServerVersion = serverVersion;
+            StartTime = startTime;
+            VIP = vip;
+        }
     }
 }

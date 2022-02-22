@@ -29,7 +29,7 @@ namespace ESI.Sharp.Endpoints
         public async Task<EsiResponse<List<int>>> All()
         {
             var endpointRequest = new RestRequest("/alliances/");
-            
+
             return await _executor.ExecuteEndpointAsync<List<int>>(endpointRequest);
         }
 
@@ -60,7 +60,7 @@ namespace ESI.Sharp.Endpoints
         public async Task<EsiResponse<List<int>>> Corporations(int allianceId)
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/corporations/").AddUrlSegment("alliance_id", allianceId);
-            
+
             return await _executor.ExecuteEndpointAsync<List<int>>(endpointRequest);
         }
 
@@ -74,7 +74,7 @@ namespace ESI.Sharp.Endpoints
         public async Task<EsiResponse<Images>> Icons(int allianceId)
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/icons/").AddUrlSegment("alliance_id", allianceId);
-            
+
             return await _executor.ExecuteEndpointAsync<Images>(endpointRequest);
         }
     }

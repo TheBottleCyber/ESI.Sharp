@@ -60,5 +60,19 @@ namespace ESI.Sharp.Models.Endpoints
         /// </summary>
         [JsonProperty("ticker")]
         public string Ticker { get; set; }
+
+        public Alliance() { }
+
+        public Alliance(int creatorCorporationId, int creatorId, DateTime dateFounded,
+            int executorCorporationId, int factionId, string name, string ticker)
+        {
+            CreatorCorporationId = creatorCorporationId;
+            CreatorId = creatorId;
+            DateFounded = dateFounded;
+            ExecutorCorporationId = executorCorporationId;
+            FactionId = factionId;
+            Name = name;
+            Ticker = ticker;
+        }
     }
 }
