@@ -10,8 +10,6 @@ namespace ESI.Sharp
 {
     public class EsiClient
     {
-        private string _eTag = string.Empty;
-
         /// <summary>
         /// Alliance endpoint /alliances/
         /// </summary>

@@ -23,7 +23,7 @@ namespace ESI.Sharp.Tests.Endpoints
         {
             var mockHttp = new MockHttpMessageHandler();
             var config = new EsiConfig("mocked", "mocked", "mocked", "mocked", "http://localhost/api");
-            
+
             var alliancesJsonString = JsonConvert.SerializeObject(new[] { 99000001, 99000002 });
             mockHttp.When($"{config.EsiEndpoint}/alliances/")
                     .WithQueryString("datasource", config.EsiSource.ToString())
@@ -39,7 +39,7 @@ namespace ESI.Sharp.Tests.Endpoints
                     .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", corporationsJsonString);
 
-            var imagesJsonString = JsonConvert.SerializeObject(new Images(x128: "url", x64: "url"));
+            var imagesJsonString = JsonConvert.SerializeObject(new Images { x64 = "url", x128 = "url" });
             mockHttp.When($"{config.EsiEndpoint}/alliances/434243723/icons/")
                     .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", imagesJsonString);
