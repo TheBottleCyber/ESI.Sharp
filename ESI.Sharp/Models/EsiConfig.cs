@@ -32,7 +32,6 @@ namespace ESI.Sharp.Models
         private readonly string _callbackUrl = string.Empty;
         private readonly string _userAgent = string.Empty;
         private readonly string _esiEndpoint = "https://esi.evetech.net/";
-        private readonly EsiSource _esiSource = EsiSource.Tranquility;
 
         /// <summary>
         /// Client Id property from ESI application authentication settings
@@ -118,17 +117,7 @@ namespace ESI.Sharp.Models
         /// Specifies which server to call the endpoints from, default is Tranquility
         /// </summary>
         /// <exception cref="ArgumentException">throws when trying set field null or empty</exception>
-        public EsiSource EsiSource
-        {
-            get => _esiSource;
-            init
-            {
-                if (value == null)
-                    throw new ArgumentException("EsiConfig constructor parameter cannot be null", nameof(EsiSource));
-                
-                _esiSource = value;
-            }
-        }
+        public EsiSource EsiSource { get; init; } = EsiSource.Tranquility;
 
         /// <summary>
         /// Initialize EsiConfig for using it in EsiClient
