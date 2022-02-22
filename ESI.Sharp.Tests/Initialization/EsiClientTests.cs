@@ -29,5 +29,17 @@ namespace ESI.Sharp.Tests.Initialization
         {
             Assert.Throws<ArgumentNullException>(() => new EsiClient(null));
         }
+
+        [Test]
+        public void InitializeChangeETag()
+        {
+            var esiClient = new EsiClient(_esiConfig);
+            
+            Assert.Throws<ArgumentException>(() => esiClient.ETag = null);
+
+            esiClient.ETag = "some etag";
+            
+            Assert.AreEqual(esiClient.ETag, "some etag");
+        }
     }
 }
