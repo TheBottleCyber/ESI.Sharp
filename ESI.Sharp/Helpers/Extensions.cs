@@ -25,6 +25,5 @@ namespace ESI.Sharp.Helpers
                 return e.GetType().GetTypeInfo().DeclaredMembers.SingleOrDefault(x => x.Name == e.ToString())
                         ?.GetCustomAttribute<EnumMemberAttribute>(false)?.Value;
         }
-
     }
 }

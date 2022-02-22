@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ESI.Sharp.Executor;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Endpoints;
 using RestSharp;
@@ -8,11 +9,11 @@ namespace ESI.Sharp.Endpoints
 {
     public class StatusEndpoint
     {
-        private readonly RestClient _client;
+        private readonly IEndpointExecutor _executor;
 
-        internal StatusEndpoint(RestClient client)
+        internal StatusEndpoint(IEndpointExecutor executor)
         {
-            _client = client;
+            _executor = executor;
         }
         
         /// <summary>
@@ -20,14 +21,12 @@ namespace ESI.Sharp.Endpoints
         /// /status/ <br/><br/>
         /// <c>This route is cached for up to 30 seconds</c>
         /// </summary>
-        /// <param name="eTag">ETag from a previous request. A 304 will be returned if this matches the current ETag. Can be empty</param>
         /// <returns><see cref="Status"/> object server status</returns>
-        public async Task<EsiResponse<Status>> Retrieve(string eTag = "")
+        public async Task<EsiResponse<Status>> Retrieve()
         {
-            var restRequest = new RestRequest("/status/").AddHeader("If-None-Match", eTag);
-            var esiResponse = await _client.ExecuteAsync(restRequest);
-
-            return new EsiResponse<Status>(esiResponse);
+            var endpointRequest = new RestRequest("/status/");
+            
+            return await _executor.ExecuteEndpointAsync<Status>(endpointRequest);
         }
     }
 }

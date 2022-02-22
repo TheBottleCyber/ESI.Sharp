@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using ESI.Sharp.Executor;
 using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Endpoints;
@@ -12,11 +13,11 @@ namespace ESI.Sharp.Endpoints
 {
     public class AllianceEndpoint
     {
-        private readonly RestClient _client;
+        private readonly IEndpointExecutor _executor;
 
-        internal AllianceEndpoint(RestClient client)
+        internal AllianceEndpoint(IEndpointExecutor executor)
         {
-            _client = client;
+            _executor = executor;
         }
 
         /// <summary>
@@ -24,14 +25,12 @@ namespace ESI.Sharp.Endpoints
         /// /alliances/ <br/><br/>
         /// <c>This route is cached for up to 3600 seconds</c>
         /// </summary>
-        /// <param name="eTag">ETag from a previous request. A 304 will be returned if this matches the current ETag. Can be empty</param>
         /// <returns><see cref="List{T}">List</see> of <see cref="int">IDs</see> for all player alliances</returns>
-        public async Task<EsiResponse<List<int>>> All(string eTag = "")
+        public async Task<EsiResponse<List<int>>> All()
         {
-            var restRequest = new RestRequest("/alliances/").AddHeader("If-None-Match", eTag);
-            var esiResponse = await _client.ExecuteAsync(restRequest);
-
-            return new EsiResponse<List<int>>(esiResponse);
+            var endpointRequest = new RestRequest("/alliances/");
+            
+            return await _executor.ExecuteEndpointAsync<List<int>>(endpointRequest);
         }
 
         /// <summary>
@@ -40,18 +39,15 @@ namespace ESI.Sharp.Endpoints
         /// <c>This route is cached for up to 3600 seconds</c>
         /// </summary>
         /// <param name="allianceId">An EVE alliance ID</param>
-        /// <param name="eTag">ETag from a previous request. A 304 will be returned if this matches the current ETag. Can be empty</param>
         /// <example>
         /// <c>var allianceInformation = await esiClient.Alliance.Information(99004425);</c>
         /// </example>
         /// <returns><see cref="Alliance"/> object contains public information about alliance</returns>
-        public async Task<EsiResponse<Alliance>> Information(int allianceId, string eTag = "")
+        public async Task<EsiResponse<Alliance>> Information(int allianceId)
         {
-            var restRequest = new RestRequest("/alliances/{alliance_id}/").AddUrlSegment("alliance_id", allianceId)
-                                                                          .AddHeader("If-None-Match", eTag);
-            var esiResponse = await _client.ExecuteAsync(restRequest);
+            var endpointRequest = new RestRequest("/alliances/{alliance_id}/").AddUrlSegment("alliance_id", allianceId);
 
-            return new EsiResponse<Alliance>(esiResponse);
+            return await _executor.ExecuteEndpointAsync<Alliance>(endpointRequest);
         }
 
         /// <summary>
@@ -60,15 +56,12 @@ namespace ESI.Sharp.Endpoints
         /// <c>This route is cached for up to 3600 seconds</c>
         /// </summary>
         /// <param name="allianceId">An EVE alliance ID</param>
-        /// <param name="eTag">ETag from a previous request. A 304 will be returned if this matches the current ETag. Can be empty</param>
         /// <returns><see cref="List{T}">List</see> of <see cref="int">IDs</see> of alliance corporations</returns>
-        public async Task<EsiResponse<List<int>>> Corporations(int allianceId, string eTag = "")
+        public async Task<EsiResponse<List<int>>> Corporations(int allianceId)
         {
-            var restRequest = new RestRequest("/alliances/{alliance_id}/corporations/").AddUrlSegment("alliance_id", allianceId)
-                                                                                       .AddHeader("If-None-Match", eTag);
-            var esiResponse = await _client.ExecuteAsync(restRequest);
-
-            return new EsiResponse<List<int>>(esiResponse);
+            var endpointRequest = new RestRequest("/alliances/{alliance_id}/corporations/").AddUrlSegment("alliance_id", allianceId);
+            
+            return await _executor.ExecuteEndpointAsync<List<int>>(endpointRequest);
         }
 
         /// <summary>
@@ -77,15 +70,12 @@ namespace ESI.Sharp.Endpoints
         /// <c>This route expires daily at 11:05</c>
         /// </summary>
         /// <param name="allianceId">An EVE alliance ID</param>
-        /// <param name="eTag">ETag from a previous request. A 304 will be returned if this matches the current ETag. Can be empty</param>
         /// <returns><see cref="Images">Images</see> URLs for the given alliance id and server</returns>
-        public async Task<EsiResponse<Images>> Icons(int allianceId, string eTag = "")
+        public async Task<EsiResponse<Images>> Icons(int allianceId)
         {
-            var restRequest = new RestRequest("/alliances/{alliance_id}/icons/").AddUrlSegment("alliance_id", allianceId)
-                                                                                .AddHeader("If-None-Match", eTag);
-            var esiResponse = await _client.ExecuteAsync(restRequest);
-
-            return new EsiResponse<Images>(esiResponse);
+            var endpointRequest = new RestRequest("/alliances/{alliance_id}/icons/").AddUrlSegment("alliance_id", allianceId);
+            
+            return await _executor.ExecuteEndpointAsync<Images>(endpointRequest);
         }
     }
 }
