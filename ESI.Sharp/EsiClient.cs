@@ -23,21 +23,6 @@ namespace ESI.Sharp
         public StatusEndpoint Status { get; set; }
 
         /// <summary>
-        /// ETag from a previous request. A 304 will be returned if this matches the current ETag. Can be empty string
-        /// </summary>
-        public string ETag
-        {
-            get => _eTag;
-            set
-            {
-                if (value == null)
-                    throw new ArgumentException("ETag cannot be null", nameof(ETag));
-
-                _eTag = value;
-            }
-        }
-
-        /// <summary>
         /// Initialize ESI api client by <see cref="EsiConfig"/>
         /// </summary>
         /// <param name="esiConfig">EsiConfig object</param>
@@ -64,12 +49,11 @@ namespace ESI.Sharp
             var restClient = new RestClient(restClientOptions).AddDefaultHeader(KnownHeaders.Accept, "application/json")
                                                               .AddDefaultHeader("Cache-Control", "no-cache")
                                                               .UseNewtonsoftJson()
-                                                              .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToEsiValue());
+                                                              .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToString());
 
-            var executor = new EsiEndpointExecutor(restClient, this);
-
-            Alliance = new AllianceEndpoint(executor);
-            Status = new StatusEndpoint(executor);
+            var endpointExecutor = new EndpointExecutor(restClient);
+            Alliance = new AllianceEndpoint(endpointExecutor);
+            Status = new StatusEndpoint(endpointExecutor);
         }
     }
 }

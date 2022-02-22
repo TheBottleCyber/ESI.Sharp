@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using ESI.Sharp.Executor;
 using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Endpoints;
@@ -13,9 +12,9 @@ namespace ESI.Sharp.Endpoints
 {
     public class AllianceEndpoint
     {
-        private readonly IEndpointExecutor _executor;
+        private readonly EndpointExecutor _executor;
 
-        internal AllianceEndpoint(IEndpointExecutor executor)
+        internal AllianceEndpoint(EndpointExecutor executor)
         {
             _executor = executor;
         }

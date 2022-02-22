@@ -19,11 +19,10 @@ namespace ESI.Sharp.Tests.Endpoints
         {
             var mockHttp = new MockHttpMessageHandler();
             var config = new EsiConfig("mocked", "mocked", "mocked", "mocked", "http://localhost/api");
-            var esiSource = config.EsiSource.ToEsiValue();
 
             var alliancesJsonString = JsonConvert.SerializeObject(new Status(1000, "1111", DateTime.UtcNow, false));
             mockHttp.When($"{config.EsiEndpoint}/status/")
-                    .WithQueryString("datasource", esiSource)
+                    .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", alliancesJsonString);
             
             _esiMockedClient = new EsiClient(config, new RestClientOptions { ConfigureMessageHandler = _ => mockHttp });

@@ -2,6 +2,7 @@ using System;
 using ESI.Sharp.Models;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using RestSharp;
 
 namespace ESI.Sharp.Tests.Initialization
 {
@@ -20,8 +21,14 @@ namespace ESI.Sharp.Tests.Initialization
             var esiClient = new EsiClient(_esiConfig);
             
             Assert.IsNotNull(esiClient);
-            Assert.IsNotNull(esiClient.Alliance);
-            Assert.IsNotNull(esiClient.Status);
+        }
+        
+        [Test]
+        public void InitializeConstructorWithOptions()
+        {
+            var esiClient = new EsiClient(_esiConfig, new RestClientOptions());
+            
+            Assert.IsNotNull(esiClient);
         }
         
         [Test]
@@ -29,17 +36,20 @@ namespace ESI.Sharp.Tests.Initialization
         {
             Assert.Throws<ArgumentNullException>(() => new EsiClient(null));
         }
-
+        
         [Test]
-        public void InitializeChangeETag()
+        public void InitializeConstructorNullOptions()
+        {
+            Assert.Throws<ArgumentNullException>(() => new EsiClient(_esiConfig, null));
+        }
+        
+        [Test]
+        public void InitializeConstructorCheckFields()
         {
             var esiClient = new EsiClient(_esiConfig);
             
-            Assert.Throws<ArgumentException>(() => esiClient.ETag = null);
-
-            esiClient.ETag = "some etag";
-            
-            Assert.AreEqual(esiClient.ETag, "some etag");
+            Assert.IsNotNull(esiClient.Alliance);
+            Assert.IsNotNull(esiClient.Status);
         }
     }
 }

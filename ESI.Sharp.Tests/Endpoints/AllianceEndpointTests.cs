@@ -23,26 +23,25 @@ namespace ESI.Sharp.Tests.Endpoints
         {
             var mockHttp = new MockHttpMessageHandler();
             var config = new EsiConfig("mocked", "mocked", "mocked", "mocked", "http://localhost/api");
-            var esiSource = config.EsiSource.ToEsiValue();
-
+            
             var alliancesJsonString = JsonConvert.SerializeObject(new[] { 99000001, 99000002 });
             mockHttp.When($"{config.EsiEndpoint}/alliances/")
-                    .WithQueryString("datasource", esiSource)
+                    .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", alliancesJsonString);
 
             var allianceJsonString = JsonConvert.SerializeObject(new Alliance(45678, 12345, DateTime.UtcNow, 98356193, 0, "C C P Alliance", "C C P"));
             mockHttp.When($"{config.EsiEndpoint}/alliances/434243723/")
-                    .WithQueryString("datasource", esiSource)
+                    .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", allianceJsonString);
 
             var corporationsJsonString = JsonConvert.SerializeObject(new[] { 98356193 });
             mockHttp.When($"{config.EsiEndpoint}/alliances/434243723/corporations/")
-                    .WithQueryString("datasource", esiSource)
+                    .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", corporationsJsonString);
 
             var imagesJsonString = JsonConvert.SerializeObject(new Images(x128: "url", x64: "url"));
             mockHttp.When($"{config.EsiEndpoint}/alliances/434243723/icons/")
-                    .WithQueryString("datasource", esiSource)
+                    .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", imagesJsonString);
 
             _esiMockedClient = new EsiClient(config, new RestClientOptions { ConfigureMessageHandler = _ => mockHttp });

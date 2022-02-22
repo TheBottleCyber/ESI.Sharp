@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ESI.Sharp.Executor;
+using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Endpoints;
 using RestSharp;
@@ -9,9 +9,9 @@ namespace ESI.Sharp.Endpoints
 {
     public class StatusEndpoint
     {
-        private readonly IEndpointExecutor _executor;
+        private readonly EndpointExecutor _executor;
 
-        internal StatusEndpoint(IEndpointExecutor executor)
+        internal StatusEndpoint(EndpointExecutor executor)
         {
             _executor = executor;
         }
