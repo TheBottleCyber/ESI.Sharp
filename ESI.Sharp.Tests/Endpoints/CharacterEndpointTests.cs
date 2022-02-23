@@ -40,6 +40,12 @@ namespace ESI.Sharp.Tests.Endpoints
                     .WithQueryString("datasource", config.EsiSource.ToString())
                     .Respond("application/json", characterCorporationHistoryJsonString);
 
+            var characterPortrait = new Images { x64 = "x64", x128 = "x128", x256 = "x256", x512 = "x512"};
+            var characterPortraitJsonString = JsonConvert.SerializeObject(characterPortrait);
+            mockHttp.When($"{config.EsiEndpoint}/characters/2117314232/portrait/")
+                    .WithQueryString("datasource", config.EsiSource.ToString())
+                    .Respond("application/json", characterPortraitJsonString);
+
             _esiMockedClient = new EsiClient(config, new RestClientOptions { ConfigureMessageHandler = _ => mockHttp });
         }
 
@@ -65,6 +71,17 @@ namespace ESI.Sharp.Tests.Endpoints
             var esiResponse = await _esiMockedClient.Character.CorporationHistory(characterId);
 
             Assert.IsTrue(esiResponse.Data[0].CorporationId == corporationid);
+        }
+        
+        [TestCase(2117314232, "x64", "x128", "x256", "x512")]
+        public async Task ExecuteEsiEndpointCorporationHistory(int characterId, string x64, string x128, string x256, string x512)
+        {
+            var esiResponse = await _esiMockedClient.Character.Portrait(characterId);
+
+            Assert.IsTrue(esiResponse.Data.x64 == x64);
+            Assert.IsTrue(esiResponse.Data.x128 == x128);
+            Assert.IsTrue(esiResponse.Data.x256 == x256);
+            Assert.IsTrue(esiResponse.Data.x512 == x512);
         }
     }
 }

@@ -4,6 +4,7 @@ using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Endpoints;
 using ESI.Sharp.Models.Endpoints.Character;
+using ESI.Sharp.Models.Shared;
 using RestSharp;
 
 namespace ESI.Sharp.Endpoints
@@ -57,6 +58,20 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/characters/{character_id}/corporationhistory/").AddUrlSegment("character_id", characterId);
 
             return await _executor.ExecuteEndpointAsync<List<CorporationHistory>>(endpointRequest);
+        }
+        
+        /// <summary>
+        /// Get character portraits <br/><br/>
+        /// characters/{character_id}/portrait/ <br/><br/>
+        /// <c>This route expires daily at 11:05</c>
+        /// </summary>
+        /// <param name="characterId">An EVE character ID</param>
+        /// <returns>Portrait urls for a character</returns>
+        public async Task<EsiResponse<Images>> Portrait(int characterId)
+        {
+            var endpointRequest = new RestRequest("/characters/{character_id}/portrait/").AddUrlSegment("character_id", characterId);
+
+            return await _executor.ExecuteEndpointAsync<Images>(endpointRequest);
         }
     }
 }
