@@ -21,7 +21,7 @@ namespace ESI.Sharp.Endpoints
         /// /status/ <br/><br/>
         /// <c>This route is cached for up to 30 seconds</c>
         /// </summary>
-        /// <returns><see cref="Status"/> object server status</returns>
+        /// <returns>EVE Server status</returns>
         public async Task<EsiResponse<Status>> Retrieve()
         {
             var endpointRequest = new RestRequest("/status/");

@@ -51,34 +51,34 @@ namespace ESI.Sharp.Tests.Endpoints
         [TestCase(99000002)]
         public async Task ExecuteEsiEndpointAll(int allianceId)
         {
-            var allAlliances = await _esiMockedClient.Alliance.All();
+            var esiResponse = await _esiMockedClient.Alliance.All();
 
-            Assert.That(allAlliances.Data, Does.Contain(allianceId));
+            Assert.That(esiResponse.Data, Does.Contain(allianceId));
         }
 
         [TestCase(434243723, "C C P")]
         public async Task ExecuteEsiEndpointInformation(int allianceId, string ticker)
         {
-            var allianceInformation = await _esiMockedClient.Alliance.Information(allianceId);
+            var esiResponse = await _esiMockedClient.Alliance.Information(allianceId);
 
-            Assert.AreEqual(allianceInformation.Data.Ticker, ticker);
+            Assert.AreEqual(esiResponse.Data.Ticker, ticker);
         }
 
         [TestCase(434243723, 98356193)]
         public async Task ExecuteEsiEndpointCorporations(int allianceId, int corporationId)
         {
-            var allianceCorporations = await _esiMockedClient.Alliance.Corporations(allianceId);
+            var esiResponse = await _esiMockedClient.Alliance.Corporations(allianceId);
 
-            Assert.That(allianceCorporations.Data, Does.Contain(corporationId));
+            Assert.That(esiResponse.Data, Does.Contain(corporationId));
         }
 
         [TestCase(434243723)]
         public async Task ExecuteEsiEndpointIcons(int allianceId)
         {
-            var allianceIcons = await _esiMockedClient.Alliance.Icons(allianceId);
+            var esiResponse = await _esiMockedClient.Alliance.Icons(allianceId);
 
-            Assert.IsTrue(!string.IsNullOrEmpty(allianceIcons.Data.x128));
-            Assert.IsTrue(!string.IsNullOrEmpty(allianceIcons.Data.x64));
+            Assert.IsTrue(!string.IsNullOrEmpty(esiResponse.Data.x128));
+            Assert.IsTrue(!string.IsNullOrEmpty(esiResponse.Data.x64));
         }
     }
 }

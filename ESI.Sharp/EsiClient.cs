@@ -19,6 +19,11 @@ namespace ESI.Sharp
         /// Status endpoint /status/
         /// </summary>
         public StatusEndpoint Status { get; set; }
+        
+        /// <summary>
+        /// Character endpoint /characters/
+        /// </summary>
+        public CharacterEndpoint Character { get; set; }
 
         /// <summary>
         /// Initialize ESI api client by <see cref="EsiConfig"/>
@@ -50,8 +55,10 @@ namespace ESI.Sharp
                                                               .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToString());
 
             var endpointExecutor = new EndpointExecutor(restClient);
+            
             Alliance = new AllianceEndpoint(endpointExecutor);
             Status = new StatusEndpoint(endpointExecutor);
+            Character = new CharacterEndpoint(endpointExecutor);
         }
     }
 }

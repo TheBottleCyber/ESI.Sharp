@@ -31,9 +31,9 @@ namespace ESI.Sharp.Tests.Endpoints
         [Test]
         public async Task EndpointRetrieveMethod()
         {
-            var status = await _esiMockedClient.Status.Retrieve();
+            var esiResponse = await _esiMockedClient.Status.Retrieve();
 
-            Assert.IsFalse(string.IsNullOrEmpty(status.Data.ServerVersion));
+            Assert.IsFalse(string.IsNullOrEmpty(esiResponse.Data.ServerVersion));
         }
     }
 }
