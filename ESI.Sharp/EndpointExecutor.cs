@@ -14,7 +14,7 @@ namespace ESI.Sharp.Helpers
             _restClient = restClient;
         }
 
-        public async Task<EsiResponse<T>> ExecuteEndpointAsync<T>(RestRequest restRequest) => 
+        public async Task<EsiResponse<T>> ExecuteEndpointAsync<T>(RestRequest restRequest) =>
             new EsiResponse<T>(await _restClient.ExecuteAsync(restRequest));
     }
 }

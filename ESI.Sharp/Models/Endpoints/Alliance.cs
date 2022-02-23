@@ -6,16 +6,6 @@ namespace ESI.Sharp.Models.Endpoints
 {
     /// <summary>
     /// Public data about an alliance
-    /// <example>Example json body<code>
-    /// {
-    /// "creator_corporation_id": 98203764,
-    /// "creator_id": 1635197119,
-    /// "date_founded": "2014-05-06T21:37:13Z",
-    /// "executor_corporation_id": 98203764,
-    /// "name": "The Bastion",
-    /// "ticker": "BASTN"
-    /// }
-    /// </code></example>
     /// </summary>
     public class Alliance
     {

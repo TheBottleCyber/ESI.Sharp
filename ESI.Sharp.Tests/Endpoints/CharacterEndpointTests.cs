@@ -20,30 +20,27 @@ namespace ESI.Sharp.Tests.Endpoints
         {
             var mockHttp = new MockHttpMessageHandler();
             var config = new EsiConfig("mocked", "mocked", "mocked", "mocked", "http://localhost/api");
-
-            var characterInformation = new Information(99004425, DateTime.UtcNow, 2, 98660988, "", "male", "The Bottle", 1, 0.28943491000000005, "<color=red>Director</color>, <color=Green>Diplomat</color>");
+            var dataSource = config.EsiSource.ToString().ToLower();
+            
+            var characterInformation = new CharacterInformation(99004425, DateTime.UtcNow, 2, 98660988, "", "male", "The Bottle", 1, 0.28943491000000005, "<color=red>Director</color>, <color=Green>Diplomat</color>");
             var characterInformationJsonString = JsonConvert.SerializeObject(characterInformation);
-            mockHttp.When($"{config.EsiEndpoint}/characters/2117314232/")
-                    .WithQueryString("datasource", config.EsiSource.ToString())
+            mockHttp.When($"{config.EsiEndpoint}/characters/2117314232/?datasource={dataSource}")
                     .Respond("application/json", characterInformationJsonString);
 
-            var charactersAffiliation = new List<Affiliation> { new Affiliation(99004425, 2117314232, 98660988, 0) };
+            var charactersAffiliation = new List<CharacterAffiliation> { new CharacterAffiliation(99004425, 2117314232, 98660988, 0) };
             var charactersAffiliationJsonString = JsonConvert.SerializeObject(charactersAffiliation);
-            mockHttp.When($"{config.EsiEndpoint}/characters/affiliation/")
-                    .WithQueryString("datasource", config.EsiSource.ToString())
+            mockHttp.When($"{config.EsiEndpoint}/characters/affiliation/?datasource={dataSource}")
                     .WithContent("[2117314232]")
                     .Respond("application/json", charactersAffiliationJsonString);
 
-            var characterCorporationHistory = new List<CorporationHistory> { new CorporationHistory(98660988, false, 0, DateTime.UtcNow) };
+            var characterCorporationHistory = new List<CharacterCorporationHistory> { new CharacterCorporationHistory(98660988, false, 0, DateTime.UtcNow) };
             var characterCorporationHistoryJsonString = JsonConvert.SerializeObject(characterCorporationHistory);
-            mockHttp.When($"{config.EsiEndpoint}/characters/2117314232/corporationhistory/")
-                    .WithQueryString("datasource", config.EsiSource.ToString())
+            mockHttp.When($"{config.EsiEndpoint}/characters/2117314232/corporationhistory/?datasource={dataSource}")
                     .Respond("application/json", characterCorporationHistoryJsonString);
 
             var characterPortrait = new Images { x64 = "x64", x128 = "x128", x256 = "x256", x512 = "x512"};
             var characterPortraitJsonString = JsonConvert.SerializeObject(characterPortrait);
-            mockHttp.When($"{config.EsiEndpoint}/characters/2117314232/portrait/")
-                    .WithQueryString("datasource", config.EsiSource.ToString())
+            mockHttp.When($"{config.EsiEndpoint}/characters/2117314232/portrait/?datasource={dataSource}")
                     .Respond("application/json", characterPortraitJsonString);
 
             _esiMockedClient = new EsiClient(config, new RestClientOptions { ConfigureMessageHandler = _ => mockHttp });

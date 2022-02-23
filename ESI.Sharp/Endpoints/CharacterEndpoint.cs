@@ -25,11 +25,11 @@ namespace ESI.Sharp.Endpoints
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         /// <returns>Public information about a character</returns>
-        public async Task<EsiResponse<Information>> Information(int characterId)
+        public async Task<EsiResponse<CharacterInformation>> Information(int characterId)
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/").AddUrlSegment("character_id", characterId);
 
-            return await _executor.ExecuteEndpointAsync<Information>(endpointRequest);
+            return await _executor.ExecuteEndpointAsync<CharacterInformation>(endpointRequest);
         }
         
         /// <summary>
@@ -39,11 +39,11 @@ namespace ESI.Sharp.Endpoints
         /// </summary>
         /// <param name="characterIds">The character IDs to fetch affiliations for. All characters must exist, or none will be returned</param>
         /// <returns>Characters corporations, alliances and factions IDs</returns>
-        public async Task<EsiResponse<List<Affiliation>>> Affiliation(IEnumerable<int> characterIds)
+        public async Task<EsiResponse<List<CharacterAffiliation>>> Affiliation(IEnumerable<int> characterIds)
         {
             var endpointRequest = new RestRequest("/characters/affiliation/", Method.Post).AddJsonBody(characterIds);
 
-            return await _executor.ExecuteEndpointAsync<List<Affiliation>>(endpointRequest);
+            return await _executor.ExecuteEndpointAsync<List<CharacterAffiliation>>(endpointRequest);
         }
         
         /// <summary>
@@ -53,11 +53,11 @@ namespace ESI.Sharp.Endpoints
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         /// <returns>Character corporation history</returns>
-        public async Task<EsiResponse<List<CorporationHistory>>> CorporationHistory(int characterId)
+        public async Task<EsiResponse<List<CharacterCorporationHistory>>> CorporationHistory(int characterId)
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/corporationhistory/").AddUrlSegment("character_id", characterId);
 
-            return await _executor.ExecuteEndpointAsync<List<CorporationHistory>>(endpointRequest);
+            return await _executor.ExecuteEndpointAsync<List<CharacterCorporationHistory>>(endpointRequest);
         }
         
         /// <summary>

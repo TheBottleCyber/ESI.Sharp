@@ -1,27 +1,9 @@
 using System;
 using System.Runtime.Serialization;
+using ESI.Sharp.Models.Enumerations;
 
 namespace ESI.Sharp.Models
 {
-    /// <summary>
-    /// Specifies which server to call the endpoints from
-    /// </summary>
-    public enum EsiSource
-    {
-        /// <summary>
-        /// EVE Online test server
-        /// </summary>
-        [EnumMember(Value = "singularity")] Singularity,
-        /// <summary>
-        /// EVE Online default server
-        /// </summary>
-        [EnumMember(Value = "tranquility")] Tranquility,
-        /// <summary>
-        /// EVE Online special server for China players
-        /// </summary>
-        [EnumMember(Value = "serenity")] Serenity
-    }
-
     /// <summary>
     /// Used to configure <see cref="EsiClient"/>
     /// </summary>

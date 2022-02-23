@@ -19,11 +19,16 @@ namespace ESI.Sharp
         /// Status endpoint /status/
         /// </summary>
         public StatusEndpoint Status { get; set; }
-        
+
         /// <summary>
         /// Character endpoint /characters/
         /// </summary>
         public CharacterEndpoint Character { get; set; }
+
+        /// <summary>
+        /// Contracts endpoint /contracts/
+        /// </summary>
+        public ContractsEndpoint Contracts { get; set; }
 
         /// <summary>
         /// Initialize ESI api client by <see cref="EsiConfig"/>
@@ -52,13 +57,14 @@ namespace ESI.Sharp
             var restClient = new RestClient(restClientOptions).AddDefaultHeader(KnownHeaders.Accept, "application/json")
                                                               .AddDefaultHeader("Cache-Control", "no-cache")
                                                               .UseNewtonsoftJson()
-                                                              .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToString());
+                                                              .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToString().ToLower());
 
             var endpointExecutor = new EndpointExecutor(restClient);
-            
+
             Alliance = new AllianceEndpoint(endpointExecutor);
             Status = new StatusEndpoint(endpointExecutor);
             Character = new CharacterEndpoint(endpointExecutor);
+            Contracts = new ContractsEndpoint(endpointExecutor);
         }
     }
 }

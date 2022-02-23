@@ -5,13 +5,6 @@ namespace ESI.Sharp.Models.Endpoints
 {
     /// <summary>
     /// EVE Server status
-    /// <example>Example json body<code>
-    /// {
-    /// "players": 21514,
-    /// "server_version": "2003445",
-    /// "start_time": "2022-02-20T11:01:33Z"
-    /// }
-    /// </code></example>
     /// </summary>
     public class Status
     {
