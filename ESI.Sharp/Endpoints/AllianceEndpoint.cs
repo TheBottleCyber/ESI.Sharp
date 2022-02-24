@@ -27,7 +27,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/");
 
-            return await _executor.ExecuteEndpointAsync<List<int>>(endpointRequest);
+            return await _executor.ExecutePublicEndpointAsync<List<int>>(endpointRequest);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/").AddUrlSegment("alliance_id", allianceId);
 
-            return await _executor.ExecuteEndpointAsync<Alliance>(endpointRequest);
+            return await _executor.ExecutePublicEndpointAsync<Alliance>(endpointRequest);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/corporations/").AddUrlSegment("alliance_id", allianceId);
 
-            return await _executor.ExecuteEndpointAsync<List<int>>(endpointRequest);
+            return await _executor.ExecutePublicEndpointAsync<List<int>>(endpointRequest);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/icons/").AddUrlSegment("alliance_id", allianceId);
 
-            return await _executor.ExecuteEndpointAsync<Images>(endpointRequest);
+            return await _executor.ExecutePublicEndpointAsync<Images>(endpointRequest);
         }
     }
 }

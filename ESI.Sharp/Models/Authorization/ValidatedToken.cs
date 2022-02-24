@@ -9,7 +9,7 @@ namespace ESI.Sharp.Models.Authorization
         public DateTime ExpiresOn { get; set; }
         public string Scopes { get; set; }
         public string CharacterOwnerHash { get; set; }
-        public string Token { get; set; }
+        public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
     }
 }

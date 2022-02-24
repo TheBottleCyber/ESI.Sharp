@@ -34,10 +34,10 @@ This can be your character name and/or project name.
 CCP will be more likely to contact you than just cut off access to ESI if you provide something that can identify you within the New Eden galaxy.
 Without this property populated, the wrapper will not work.*
 
-### Endpoint Example
+### Status public endpoint example
 Accessing a public endpoint is extremely simple:
 ```c#
-var status = await _esiClient.Status.Retrieve();
+var status = await esiClient.Status.Retrieve();
 var statusJsoned = JsonConvert.SerializeObject(status);
 
 Console.WriteLine(statusJsoned);
@@ -63,4 +63,39 @@ And it will print **EsiResponse** object to console output:
   },
   "Exception": null
 }
+```
+
+### SSO Authorization
+#### SSO Login URL generator
+**ESI.Sharp** has method to generate the URL required to authenticate a character or authorize roles (by providing a params of scopes) for the ESI API.
+
+You should also provide a value for **state** that you verify when it is returned (it will be included in the callback).
+
+Without scopes (only **public** endpoints will available):
+```c#
+var authUrl = esiClient.Authorization.CreateAuthorizationUrl("custom_state");
+```
+With all scopes (all **authorized** endpoints will available):
+```c#
+var allScopes = EnumHelper.GetEnumValues<Scope>();
+var authUrl = esiClient.Authorization.CreateAuthorizationUrl("custom_state", allScopes.ToArray());
+```
+With custom scopes params (only **allowed by scope** endpoints will available):
+```c#
+var authUrl = esiClient.Authorization.CreateAuthorizationUrl("custom_state", Scope.UIOpenWindow, Scope.AssetsReadAssets, ...);
+```
+
+#### Initial SSO token request
+```c#
+var token = await esiClient.Authorization.GetToken(TokenGrantType.AuthorizationCode, "auth code received from the esi request in the callbackurl");
+var validatedToken = await client.Authorization.ValidateToken(token);
+```
+#### Refresh SSO token
+```c#
+var token = await esiClient.Authorization.GetToken(TokenGrantType.AuthorizationCode, "saved refresh token from token request");
+```
+#### Performing an authenticated request
+Set the validated token data on the client before performing the request
+```c#
+esiClient.SetRequestToken(validatedToken);
 ```

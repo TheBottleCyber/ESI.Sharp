@@ -25,7 +25,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/status/");
             
-            return await _executor.ExecuteEndpointAsync<Status>(endpointRequest);
+            return await _executor.ExecutePublicEndpointAsync<Status>(endpointRequest);
         }
     }
 }

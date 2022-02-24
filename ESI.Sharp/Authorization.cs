@@ -8,6 +8,7 @@ using ESI.Sharp.Extensions;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Authorization;
 using ESI.Sharp.Models.Enumerations;
+using ESI.Sharp.Models.Enumerations.Static;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using RestSharp;
@@ -26,18 +27,31 @@ namespace ESI.Sharp
             _config = config;
             _ssoUrl = "login.eveonline.com";
 
-            _authorizationClient = new RestClient($"https://{_ssoUrl}/");
-            _authorizationClient.Authenticator = new HttpBasicAuthenticator(_config.ClientId, _config.SecretKey);
+            _authorizationClient = new RestClient($"https://{_ssoUrl}/")
+            {
+                Authenticator = new HttpBasicAuthenticator(_config.ClientId, _config.SecretKey)
+            };
         }
 
-        public string CreateAuthorizationUrl(string state, List<string> scope = null)
+        /// <summary>
+        /// Create SSO authorization url to login.eveonline.com
+        /// </summary>
+        /// <param name="state">Unique string of your choice. State is required by EVE’s SSO to encourage extra security measures</param>
+        /// <param name="scopes">Params list of Esi scopes that you would like to request permissions for</param>
+        /// <returns>Authorization url</returns>
+        public string CreateAuthorizationUrl(string state, params Scope[] scopes)
         {
             if (string.IsNullOrEmpty(state)) throw new ArgumentException("Value cannot be null or empty.", nameof(state));
 
             var url = $"https://{_ssoUrl}/v2/oauth/authorize/?response_type=code&redirect_uri={Uri.EscapeDataString(_config.CallbackUrl)}&client_id={_config.ClientId}&state={state}";
 
-            if (scope != null)
-                url = $"{url}&scope={string.Join("+", scope.Distinct().ToList())}";
+            if (scopes != null)
+            {
+                var list = new List<string>();
+                foreach (var scope in scopes) list.Add(scope.GetEnumMemberAttribute());
+                
+                url = $"{url}&scope={string.Join("%20", list)}";
+            }
 
             return url;
         }
@@ -96,8 +110,8 @@ namespace ESI.Sharp
         /// <summary>
         /// SSO Validate token and get information about token holder
         /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
+        /// <param name="token">Token object from GetToken</param>
+        /// <returns>Validated token including character_id and character_name</returns>
         public async Task<ValidatedToken> ValidateToken(Token token)
         {
             if (token == null) throw new ArgumentNullException(nameof(token));
@@ -128,7 +142,7 @@ namespace ESI.Sharp
             return new ValidatedToken
             {
                 RefreshToken = token.RefreshToken,
-                Token = token.AccessToken,
+                AccessToken = token.AccessToken,
                 CharacterName = nameClaim,
                 CharacterOwnerHash = ownerClaim,
                 CharacterID = int.Parse(subjectClaim.Split(':').Last()),
