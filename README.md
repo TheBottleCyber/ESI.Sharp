@@ -82,7 +82,8 @@ var authUrl = esiClient.Authorization.CreateAuthorizationUrl("custom_state", all
 ```
 With custom scopes params (only **allowed by scope** endpoints will available):
 ```c#
-var authUrl = esiClient.Authorization.CreateAuthorizationUrl("custom_state", Scope.UIOpenWindow, Scope.AssetsReadAssets, ...);
+var authUrl = esiClient.Authorization.CreateAuthorizationUrl("custom_state",
+ Scope.UIOpenWindow, Scope.AssetsReadAssets, Scope.CharactersReadTitles, ...);
 ```
 
 #### Initial SSO token request
