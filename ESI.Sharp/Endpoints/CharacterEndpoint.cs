@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
-using ESI.Sharp.Models.Endpoints;
 using ESI.Sharp.Models.Endpoints.Character;
 using ESI.Sharp.Models.Shared;
 using RestSharp;

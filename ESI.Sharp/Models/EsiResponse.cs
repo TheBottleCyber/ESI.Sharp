@@ -1,8 +1,6 @@
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -73,7 +71,7 @@ namespace ESI.Sharp.Models
                 }
             }
 
-            if (response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created)
+            if (response.IsSuccessful)
             {
                 if (ValidateJSON(response.Content))
                     Data = JsonConvert.DeserializeObject<T>(response.Content);

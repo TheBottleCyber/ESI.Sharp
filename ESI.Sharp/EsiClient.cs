@@ -3,13 +3,17 @@ using ESI.Sharp.Endpoints;
 using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using RestSharp;
-using RestSharp.Authenticators;
 using RestSharp.Serializers.NewtonsoftJson;
 
 namespace ESI.Sharp
 {
     public class EsiClient
     {
+        /// <summary>
+        /// SSO Authorization
+        /// </summary>
+        public Authorization Authorization { get; set; }
+        
         /// <summary>
         /// Alliance endpoint /alliances/
         /// </summary>
@@ -61,6 +65,7 @@ namespace ESI.Sharp
 
             var endpointExecutor = new EndpointExecutor(restClient);
 
+            Authorization = new Authorization(esiConfig);
             Alliance = new AllianceEndpoint(endpointExecutor);
             Status = new StatusEndpoint(endpointExecutor);
             Character = new CharacterEndpoint(endpointExecutor);

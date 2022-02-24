@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;

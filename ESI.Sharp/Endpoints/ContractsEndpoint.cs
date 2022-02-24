@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
-using ESI.Sharp.Models.Endpoints.Character;
 using ESI.Sharp.Models.Endpoints.Contracts;
-using ESI.Sharp.Models.Enumerations;
+using ESI.Sharp.Models.Enumerations.Static;
 using RestSharp;
 
 namespace ESI.Sharp.Endpoints

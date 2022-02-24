@@ -1,4 +1,4 @@
-namespace ESI.Sharp.Models.Enumerations
+namespace ESI.Sharp.Models.Enumerations.Static
 {
     /// <summary>
     /// Region SDE definition
