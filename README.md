@@ -87,12 +87,12 @@ var authUrl = esiClient.Authorization.CreateAuthorizationUrl("custom_state", Sco
 
 #### Initial SSO token request
 ```c#
-var token = await esiClient.Authorization.GetToken(TokenGrantType.AuthorizationCode, "auth code received from the esi request in the callbackurl");
+var token = await esiClient.Authorization.GetToken(TokenGrantType.AuthorizationCode, response_code);
 var validatedToken = await client.Authorization.ValidateToken(token);
 ```
 #### Refresh SSO token
 ```c#
-var token = await esiClient.Authorization.GetToken(TokenGrantType.AuthorizationCode, "saved refresh token from token request");
+var token = await esiClient.Authorization.GetToken(TokenGrantType.RefreshToken, refresh_token);
 ```
 #### Performing an authenticated request
 Set the validated token data on the client before performing the request
