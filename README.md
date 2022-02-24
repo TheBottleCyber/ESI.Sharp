@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/nuget/vpre/ESI.Sharp.svg?maxAge=2592000?style=badge" alt="NuGet">
 </a>
 # What is ESI.Sharp
-ESI.Sharp is an unofficial .NET API Wrapper for the EVE Online ESI (https://esi.evetech.net/ui) with **powerfully** commented endpoints and **testing** as much as possible
+ESI.Sharp is an unofficial .NET API Wrapper for the EVE Online ESI (https://esi.evetech.net/ui) with **powerfully** commented endpoints, models, enumerations and **testing** as much as possible
 ## Resources
 
 * [ESI-Docs](https://docs.esi.evetech.net/) ([source](https://github.com/esi/esi-docs)) - This is the best documentation concerning ESI and the SSO process.
