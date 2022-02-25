@@ -34,8 +34,8 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-      - name: Test
-        run: dotnet test --no-build --verbosity normal
+#      - name: Test
+#        run: dotnet test --no-build --verbosity normal
 
       - name: Define Package Name
         run: echo 'PACKAGE_NAME=$"ESI.Sharp/bin/Release/ESI.Sharp.${{ env.VERSION_NUMBER }}.nupkg" ' >> $GITHUB_ENV

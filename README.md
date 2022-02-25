@@ -1,6 +1,5 @@
 [![.NET Sonar Scanner](https://github.com/TheBottleCyber/ESI.Sharp/actions/workflows/sonar.yml/badge.svg)](https://github.com/TheBottleCyber/ESI.Sharp/actions/workflows/sonar.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=coverage)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=TheBottleCyber_ESI.Sharp&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=TheBottleCyber_ESI.Sharp)
@@ -8,7 +7,7 @@
     <img src="https://img.shields.io/nuget/vpre/ESI.Sharp.svg?maxAge=2592000?style=badge" alt="NuGet">
 </a>
 # What is ESI.Sharp
-ESI.Sharp is an unofficial .NET API Wrapper for the EVE Online ESI (https://esi.evetech.net/ui) with **powerfully** commented endpoints, models, enumerations and **testing** as much as possible
+ESI.Sharp is an unofficial .NET API Wrapper for the EVE Online ESI (https://esi.evetech.net/ui) with **powerfully** commented endpoints, models and enumerations
 ## Resources
 
 * [ESI-Docs](https://docs.esi.evetech.net/) ([source](https://github.com/esi/esi-docs)) - This is the best documentation concerning ESI and the SSO process.

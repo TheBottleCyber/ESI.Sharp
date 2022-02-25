@@ -22,11 +22,11 @@ namespace ESI.Sharp
         private readonly EsiConfig _config;
         private readonly string _ssoUrl;
 
-        public Authorization(EsiConfig config)
+        public Authorization(EsiConfig config, string ssoUrl = "login.eveonline.com")
         {
             _config = config;
-            _ssoUrl = "login.eveonline.com";
-
+            _ssoUrl = ssoUrl;
+            
             _authorizationClient = new RestClient($"https://{_ssoUrl}/")
             {
                 Authenticator = new HttpBasicAuthenticator(_config.ClientId, _config.SecretKey)
