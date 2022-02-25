@@ -42,14 +42,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-      - name: Cache NuGet packages
-        uses: actions/cache@v2.1.7
-        id: cache-nuget
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
-          restore-keys: |
-            ${{ runner.os }}-nuget-
+
       - name: Restore dependencies
         run: dotnet restore
       - name: Build and analyze
