@@ -29,7 +29,7 @@ namespace ESI.Sharp.Helpers
                 requestToken.Scopes = string.Empty;
 
             if (string.IsNullOrEmpty(requestToken.Scopes))
-                throw new ArgumentException("This endpoint uses authorization which scopes is null", nameof(requestToken.Scopes));
+                throw new ArgumentException("This endpoint uses authorization which scopes is null");
 
             if (!requestToken.Scopes.Contains(requiredScope.GetEnumMemberAttribute()))
                 throw new UnauthorizedAccessException($"The following scope {requiredScope.GetEnumMemberAttribute()} does not exists in Token scopes");

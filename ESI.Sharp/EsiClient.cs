@@ -12,7 +12,7 @@ namespace ESI.Sharp
     public class EsiClient
     {
         private ValidatedToken _requestToken;
-        private RestClient _restClient;
+        private readonly RestClient _restClient;
 
         /// <summary>
         /// SSO Authorization
@@ -76,7 +76,7 @@ namespace ESI.Sharp
         public void SetRequestToken(ValidatedToken token)
         {
             if (token is not null && string.IsNullOrEmpty(token.AccessToken)) 
-                throw new ArgumentException("Value cannot be null or empty.", nameof(token.AccessToken));
+                throw new ArgumentException("AccessToken cannot be null or empty.");
 
             _requestToken = token;
 
