@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-namespace ESI.Sharp.Extensions
+namespace ESI.Sharp.Helpers
 {
     public static class EnumHelper
     {

@@ -1,6 +1,5 @@
 using System;
 using ESI.Sharp.Endpoints;
-using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Authorization;
 using RestSharp;
@@ -23,6 +22,11 @@ namespace ESI.Sharp
         /// Alliance endpoint /alliances/
         /// </summary>
         public AllianceEndpoint Alliance { get; set; }
+
+        /// <summary>
+        /// Assets endpoint /characters/{character_id}/assets/
+        /// </summary>
+        public AssetsEndpoint Assets { get; set; }
 
         /// <summary>
         /// Status endpoint /status/
@@ -75,25 +79,24 @@ namespace ESI.Sharp
 
         public void SetRequestToken(ValidatedToken token)
         {
-            if (token is not null && string.IsNullOrEmpty(token.AccessToken)) 
+            if (token is not null && string.IsNullOrEmpty(token.AccessToken))
                 throw new ArgumentException("AccessToken cannot be null or empty.");
 
             _requestToken = token;
 
             if (_requestToken is not null) _restClient.UseAuthenticator(new JwtAuthenticator(_requestToken.AccessToken));
             else _restClient.Authenticator = null;
-            
+
             InitializeEsiEndpoints();
         }
 
         private void InitializeEsiEndpoints()
         {
-            var endpointExecutor = new EndpointExecutor(_restClient);
-
-            Alliance = new AllianceEndpoint(endpointExecutor);
-            Status = new StatusEndpoint(endpointExecutor);
-            Character = new CharacterEndpoint(endpointExecutor, _requestToken);
-            Contracts = new ContractsEndpoint(endpointExecutor);
+            Alliance = new AllianceEndpoint(_restClient, _requestToken);
+            Status = new StatusEndpoint(_restClient, _requestToken);
+            Character = new CharacterEndpoint(_restClient, _requestToken);
+            Contracts = new ContractsEndpoint(_restClient, _requestToken);
+            Assets = new AssetsEndpoint(_restClient, _requestToken);
         }
     }
 }

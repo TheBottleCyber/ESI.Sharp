@@ -1,22 +1,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
+using ESI.Sharp.Models.Authorization;
 using ESI.Sharp.Models.Endpoints;
 using ESI.Sharp.Models.Shared;
 using RestSharp;
 
 namespace ESI.Sharp.Endpoints
 {
-    public class AllianceEndpoint
+    public class AllianceEndpoint : EndpointBase
     {
-        private readonly EndpointExecutor _executor;
-
-        internal AllianceEndpoint(EndpointExecutor executor)
-        {
-            _executor = executor;
-        }
-
+        public AllianceEndpoint(RestClient restClient, ValidatedToken validatedToken) : base(restClient, validatedToken) { }
+        
         /// <summary>
         /// List all alliances <br/><br/>
         /// /alliances/ <br/><br/>
@@ -27,7 +22,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/");
 
-            return await _executor.ExecutePublicEndpointAsync<List<int>>(endpointRequest);
+            return await ExecutePublicEndpointAsync<List<int>>(endpointRequest);
         }
 
         /// <summary>
@@ -41,7 +36,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/").AddUrlSegment("alliance_id", allianceId);
 
-            return await _executor.ExecutePublicEndpointAsync<Alliance>(endpointRequest);
+            return await ExecutePublicEndpointAsync<Alliance>(endpointRequest);
         }
 
         /// <summary>
@@ -55,7 +50,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/corporations/").AddUrlSegment("alliance_id", allianceId);
 
-            return await _executor.ExecutePublicEndpointAsync<List<int>>(endpointRequest);
+            return await ExecutePublicEndpointAsync<List<int>>(endpointRequest);
         }
 
         /// <summary>
@@ -69,7 +64,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/alliances/{alliance_id}/icons/").AddUrlSegment("alliance_id", allianceId);
 
-            return await _executor.ExecutePublicEndpointAsync<Images>(endpointRequest);
+            return await ExecutePublicEndpointAsync<Images>(endpointRequest);
         }
     }
 }

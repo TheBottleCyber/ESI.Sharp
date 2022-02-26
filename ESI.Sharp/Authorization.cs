@@ -4,7 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ESI.Sharp.Extensions;
+using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Authorization;
 using ESI.Sharp.Models.Enumerations;

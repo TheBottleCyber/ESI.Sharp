@@ -1,22 +1,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
+using ESI.Sharp.Models.Authorization;
 using ESI.Sharp.Models.Endpoints.Contracts;
 using ESI.Sharp.Models.Enumerations.Static;
 using RestSharp;
 
 namespace ESI.Sharp.Endpoints
 {
-    public class ContractsEndpoint
+    public class ContractsEndpoint : EndpointBase
     {
-        private readonly EndpointExecutor _executor;
-
-        public ContractsEndpoint(EndpointExecutor executor)
-        {
-            _executor = executor;
-        }
-
+        public ContractsEndpoint(RestClient restClient, ValidatedToken validatedToken) : base(restClient, validatedToken) { }
+        
         /// <summary>
         /// Get public contracts <br/><br/>
         /// /contracts/public/{region_id}/ <br/><br/>
@@ -41,7 +36,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/contracts/public/{region_id}/").AddUrlSegment("region_id", region)
                                                                                    .AddQueryParameter("page", page);
 
-            return await _executor.ExecutePublicEndpointAsync<List<Contract>>(endpointRequest);
+            return await ExecutePublicEndpointAsync<List<Contract>>(endpointRequest);
         }
 
         /// <summary>
@@ -56,7 +51,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/contracts/public/items/{contract_id}/").AddUrlSegment("contract_id", contract_id)
                                                                                            .AddQueryParameter("page", page);
 
-            return await _executor.ExecutePublicEndpointAsync<List<ContractItem>>(endpointRequest);
+            return await ExecutePublicEndpointAsync<List<ContractItem>>(endpointRequest);
         }
         
         /// <summary>
@@ -71,7 +66,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/contracts/public/bids/{contract_id}/").AddUrlSegment("contract_id", contract_id)
                                                                                            .AddQueryParameter("page", page);
 
-            return await _executor.ExecutePublicEndpointAsync<List<ContractBid>>(endpointRequest);
+            return await ExecutePublicEndpointAsync<List<ContractBid>>(endpointRequest);
         }
     }
 }
