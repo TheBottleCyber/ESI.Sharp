@@ -1,7 +1,7 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace ESI.Sharp.Models.Enumerations
+namespace ESI.Sharp.Models.Enumerations.Static
 {
     /// <summary>
     /// Status of the contract

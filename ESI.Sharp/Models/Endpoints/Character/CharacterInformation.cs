@@ -67,22 +67,5 @@ namespace ESI.Sharp.Models.Endpoints.Character
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
-
-        public CharacterInformation() { }
-
-        public CharacterInformation(int allianceId, DateTime birthday, int bloodlineId, int corporationId, string description,
-            string gender, string name, int raceId, double securityStatus, string title)
-        {
-            AllianceId = allianceId;
-            Birthday = birthday;
-            BloodlineId = bloodlineId;
-            CorporationId = corporationId;
-            Description = description;
-            Gender = gender;
-            Name = name;
-            RaceId = raceId;
-            SecurityStatus = securityStatus;
-            Title = title;
-        }
     }
 }

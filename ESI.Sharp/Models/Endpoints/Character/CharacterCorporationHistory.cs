@@ -31,15 +31,5 @@ namespace ESI.Sharp.Models.Endpoints.Character
         /// </summary>
         [JsonProperty("start_date")]
         public DateTime StartDate { get; set; }
-
-        public CharacterCorporationHistory() { }
-
-        public CharacterCorporationHistory(int corporationId, bool isDeleted, int recordId, DateTime startDate)
-        {
-            CorporationId = corporationId;
-            IsDeleted = isDeleted;
-            RecordId = recordId;
-            StartDate = startDate;
-        }
     }
 }

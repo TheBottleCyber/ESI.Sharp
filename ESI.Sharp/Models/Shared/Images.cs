@@ -18,7 +18,5 @@ namespace ESI.Sharp.Models.Shared
 
         [JsonProperty("px64x64")]
         public string x64 { get; set; }
-
-        public Images() { }
     }
 }

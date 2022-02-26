@@ -72,7 +72,5 @@ namespace ESI.Sharp.Models.Endpoints.Contracts
         /// </summary>
         [JsonProperty("time_efficiency")]
         public int TimeEfficiency { get; set; }
-
-        public ContractItem() { }
     }
 }

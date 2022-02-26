@@ -31,15 +31,5 @@ namespace ESI.Sharp.Models.Endpoints.Contracts
         /// </summary>
         [JsonProperty("amount")]
         public double Amount { get; set; }
-
-        public ContractBid() { }
-
-        public ContractBid(int bidId, int bidderId, DateTime dateBid, double amount)
-        {
-            BidId = bidId;
-            BidderId = bidderId;
-            DateBid = dateBid;
-            Amount = amount;
-        }
     }
 }

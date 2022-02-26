@@ -30,15 +30,5 @@ namespace ESI.Sharp.Models.Endpoints.Character
         /// </summary>
         [JsonProperty("faction_id")]
         public int FactionId { get; set; }
-
-        public CharacterAffiliation() { }
-
-        public CharacterAffiliation(int allianceId, int characterId, int corporationId, int factionId)
-        {
-            AllianceId = allianceId;
-            CharacterId = characterId;
-            CorporationId = corporationId;
-            FactionId = factionId;
-        }
     }
 }

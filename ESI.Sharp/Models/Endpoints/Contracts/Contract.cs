@@ -1,5 +1,6 @@
 using System;
 using ESI.Sharp.Models.Enumerations;
+using ESI.Sharp.Models.Enumerations.Static;
 using Newtonsoft.Json;
 
 namespace ESI.Sharp.Models.Endpoints.Contracts
@@ -137,7 +138,5 @@ namespace ESI.Sharp.Models.Endpoints.Contracts
         /// </summary>
         [JsonProperty("volume")]
         public double Volume { get; set; }
-
-        public Contract() { }
     }
 }

@@ -76,10 +76,8 @@ namespace ESI.Sharp.Models
                 if (ValidateJSON(response.Content))
                     Data = JsonConvert.DeserializeObject<T>(response.Content);
             }
-            else
-            {
-                Message = response.Content;
-            }
+            
+            Message = response.Content;
         }
 
         public void ParseEsiResponseHeaders(HeaderParameter responseHeader)
