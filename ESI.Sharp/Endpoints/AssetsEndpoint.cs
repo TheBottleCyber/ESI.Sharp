@@ -24,7 +24,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/characters/{character_id}/assets/").AddUrlSegment("character_id", _validatedToken.CharacterID)
                                                                                        .AddQueryParameter("page", page);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<AssetsItem>>(endpointRequest, Scope.AssetsReadAssets);
+            return await ExecuteAuthorizedEndpointAsync<List<AssetsItem>>(endpointRequest, Scope.AssetsReadAssets);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/characters/{character_id}/assets/locations/", Method.Post).AddUrlSegment("character_id", _validatedToken.CharacterID)
                                                                                                               .AddJsonBody(itemIds);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<AssetsItemLocation>>(endpointRequest, Scope.AssetsReadAssets);
+            return await ExecuteAuthorizedEndpointAsync<List<AssetsItemLocation>>(endpointRequest, Scope.AssetsReadAssets);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/characters/{character_id}/assets/names/", Method.Post).AddUrlSegment("character_id", _validatedToken.CharacterID)
                                                                                                           .AddJsonBody(itemIds);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<AssetsItemName>>(endpointRequest, Scope.AssetsReadAssets);
+            return await ExecuteAuthorizedEndpointAsync<List<AssetsItemName>>(endpointRequest, Scope.AssetsReadAssets);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/corporations/{corporation_id}/assets/").AddUrlSegment("corporation_id", _validatedToken.CharacterCorporationId)
                                                                                            .AddQueryParameter("page", page);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<AssetsItem>>(endpointRequest, Scope.AssetsReadCorporationAssets);
+            return await ExecuteAuthorizedEndpointAsync<List<AssetsItem>>(endpointRequest, Scope.AssetsReadCorporationAssets);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/corporations/{corporation_id}/assets/locations/", Method.Post).AddUrlSegment("corporation_id", _validatedToken.CharacterCorporationId)
                                                                                                                   .AddJsonBody(itemIds);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<AssetsItemLocation>>(endpointRequest, Scope.AssetsReadCorporationAssets);
+            return await ExecuteAuthorizedEndpointAsync<List<AssetsItemLocation>>(endpointRequest, Scope.AssetsReadCorporationAssets);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/corporations/{corporation_id}/assets/names/", Method.Post).AddUrlSegment("corporation_id", _validatedToken.CharacterCorporationId)
                                                                                                               .AddJsonBody(itemIds);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<AssetsItemName>>(endpointRequest, Scope.AssetsReadCorporationAssets);
+            return await ExecuteAuthorizedEndpointAsync<List<AssetsItemName>>(endpointRequest, Scope.AssetsReadCorporationAssets);
         }
     }
 }

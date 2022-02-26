@@ -80,7 +80,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/medals/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<CharacterMedal>>(endpointRequest, Scope.CharactersReadMedals);
+            return await ExecuteAuthorizedEndpointAsync<List<CharacterMedal>>(endpointRequest, Scope.CharactersReadMedals);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/agents_research/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<CharacterAgent>>(endpointRequest, Scope.CharactersReadAgentsResearch);
+            return await ExecuteAuthorizedEndpointAsync<List<CharacterAgent>>(endpointRequest, Scope.CharactersReadAgentsResearch);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/blueprints/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<CharacterBlueprint>>(endpointRequest, Scope.CharactersReadBlueprints);
+            return await ExecuteAuthorizedEndpointAsync<List<CharacterBlueprint>>(endpointRequest, Scope.CharactersReadBlueprints);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace ESI.Sharp.Endpoints
             var endpointRequest = new RestRequest("/characters/{character_id}/cspa/", Method.Post).AddUrlSegment("character_id", _validatedToken.CharacterID)
                                                                                                   .AddJsonBody(characterIds);
 
-            return await ExecuteAuthorizatedEndpointAsync<float>(endpointRequest, Scope.CharactersReadContacts);
+            return await ExecuteAuthorizedEndpointAsync<float>(endpointRequest, Scope.CharactersReadContacts);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/fatigue/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<CharacterFatique>(endpointRequest, Scope.CharactersReadFatigue);
+            return await ExecuteAuthorizedEndpointAsync<CharacterFatique>(endpointRequest, Scope.CharactersReadFatigue);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/notifications/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<CharacterNotification>>(endpointRequest, Scope.CharactersReadNotifications);
+            return await ExecuteAuthorizedEndpointAsync<List<CharacterNotification>>(endpointRequest, Scope.CharactersReadNotifications);
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/notifications/contacts/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<CharacterContactNotification>>(endpointRequest, Scope.CharactersReadNotifications);
+            return await ExecuteAuthorizedEndpointAsync<List<CharacterContactNotification>>(endpointRequest, Scope.CharactersReadNotifications);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/roles/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<CharacterRoles>(endpointRequest, Scope.CharactersReadCorporationRoles);
+            return await ExecuteAuthorizedEndpointAsync<CharacterRoles>(endpointRequest, Scope.CharactersReadCorporationRoles);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/standings/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<CharacterStanding>>(endpointRequest, Scope.CharactersReadStandings);
+            return await ExecuteAuthorizedEndpointAsync<List<CharacterStanding>>(endpointRequest, Scope.CharactersReadStandings);
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace ESI.Sharp.Endpoints
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/titles/").AddUrlSegment("character_id", _validatedToken.CharacterID);
 
-            return await ExecuteAuthorizatedEndpointAsync<List<CharacterTitle>>(endpointRequest, Scope.CharactersReadTitles);
+            return await ExecuteAuthorizedEndpointAsync<List<CharacterTitle>>(endpointRequest, Scope.CharactersReadTitles);
         }
     }
 }
