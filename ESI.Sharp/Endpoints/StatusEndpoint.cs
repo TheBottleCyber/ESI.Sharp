@@ -9,7 +9,7 @@ namespace ESI.Sharp.Endpoints
     public class StatusEndpoint : EndpointBase
     {
         public StatusEndpoint(RestClient restClient, ValidatedToken validatedToken) : base(restClient, validatedToken) { }
-        
+
         /// <summary>
         /// Retrieve the uptime and player counts <br/><br/>
         /// /status/ <br/><br/>
@@ -19,7 +19,7 @@ namespace ESI.Sharp.Endpoints
         public async Task<EsiResponse<Status>> Retrieve()
         {
             var endpointRequest = new RestRequest("/status/");
-            
+
             return await ExecutePublicEndpointAsync<Status>(endpointRequest);
         }
     }

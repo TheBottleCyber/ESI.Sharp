@@ -12,7 +12,7 @@ namespace ESI.Sharp.Endpoints
     public class CharacterEndpoint : EndpointBase
     {
         public CharacterEndpoint(RestClient restClient, ValidatedToken validatedToken) : base(restClient, validatedToken) { }
-        
+
         /// <summary>
         /// Get character's public information <br/><br/>
         /// /characters/{character_id}/ <br/><br/>
@@ -125,7 +125,7 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecuteAuthorizatedEndpointAsync<float>(endpointRequest, Scope.CharactersReadContacts);
         }
-        
+
         /// <summary>
         /// Get jump fatigue <br/><br/>
         /// /characters/{character_id}/fatigue/ <br/><br/>
@@ -139,7 +139,7 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecuteAuthorizatedEndpointAsync<CharacterFatique>(endpointRequest, Scope.CharactersReadFatigue);
         }
-        
+
         /// <summary>
         /// Get character notifications <br/><br/>
         /// /characters/{character_id}/notifications/ <br/><br/>
@@ -153,7 +153,7 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecuteAuthorizatedEndpointAsync<List<CharacterNotification>>(endpointRequest, Scope.CharactersReadNotifications);
         }
-        
+
         /// <summary>
         /// Get new contact notifications <br/><br/>
         /// /characters/{character_id}/notifications/contacts/ <br/><br/>
@@ -167,7 +167,7 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecuteAuthorizatedEndpointAsync<List<CharacterContactNotification>>(endpointRequest, Scope.CharactersReadNotifications);
         }
-        
+
         /// <summary>
         /// Get character corporation roles <br/><br/>
         /// /characters/{character_id}/roles/ <br/><br/>
@@ -181,7 +181,7 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecuteAuthorizatedEndpointAsync<CharacterRoles>(endpointRequest, Scope.CharactersReadCorporationRoles);
         }
-        
+
         /// <summary>
         /// Get standings <br/><br/>
         /// /characters/{character_id}/standings/ <br/><br/>
@@ -195,7 +195,7 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecuteAuthorizatedEndpointAsync<List<CharacterStanding>>(endpointRequest, Scope.CharactersReadStandings);
         }
-        
+
         /// <summary>
         /// Get character corporation titles <br/><br/>
         /// /characters/{character_id}/titles/ <br/><br/>
@@ -209,6 +209,5 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecuteAuthorizatedEndpointAsync<List<CharacterTitle>>(endpointRequest, Scope.CharactersReadTitles);
         }
-
     }
 }

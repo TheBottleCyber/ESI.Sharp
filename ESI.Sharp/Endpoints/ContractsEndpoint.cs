@@ -11,7 +11,7 @@ namespace ESI.Sharp.Endpoints
     public class ContractsEndpoint : EndpointBase
     {
         public ContractsEndpoint(RestClient restClient, ValidatedToken validatedToken) : base(restClient, validatedToken) { }
-        
+
         /// <summary>
         /// Get public contracts <br/><br/>
         /// /contracts/public/{region_id}/ <br/><br/>
@@ -53,7 +53,7 @@ namespace ESI.Sharp.Endpoints
 
             return await ExecutePublicEndpointAsync<List<ContractItem>>(endpointRequest);
         }
-        
+
         /// <summary>
         /// Get public contract bids <br/><br/>
         /// /contracts/public/bids/{contract_id}/ <br/><br/>
@@ -64,7 +64,7 @@ namespace ESI.Sharp.Endpoints
         public async Task<EsiResponse<List<ContractBid>>> ContractBids(int contract_id, int page = 1)
         {
             var endpointRequest = new RestRequest("/contracts/public/bids/{contract_id}/").AddUrlSegment("contract_id", contract_id)
-                                                                                           .AddQueryParameter("page", page);
+                                                                                          .AddQueryParameter("page", page);
 
             return await ExecutePublicEndpointAsync<List<ContractBid>>(endpointRequest);
         }

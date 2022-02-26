@@ -64,8 +64,6 @@ namespace ESI.Sharp
             if (restClientOptions == null)
                 throw new ArgumentNullException(nameof(restClientOptions), "EsiClient constructor parameter cannot be null");
 
-            Authorization = new Authorization(esiConfig);
-
             restClientOptions.BaseUrl = new Uri(esiConfig.EsiEndpoint);
             restClientOptions.UserAgent = esiConfig.UserAgent;
 
@@ -73,6 +71,8 @@ namespace ESI.Sharp
                                                            .AddDefaultHeader("Cache-Control", "no-cache")
                                                            .UseNewtonsoftJson()
                                                            .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToString().ToLower());
+            
+            Authorization = new Authorization(_restClient, esiConfig);
 
             InitializeEsiEndpoints();
         }

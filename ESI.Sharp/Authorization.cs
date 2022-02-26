@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ESI.Sharp.Endpoints;
 using ESI.Sharp.Helpers;
 using ESI.Sharp.Models;
 using ESI.Sharp.Models.Authorization;
+using ESI.Sharp.Models.Endpoints.Character;
 using ESI.Sharp.Models.Enumerations;
 using ESI.Sharp.Models.Enumerations.Static;
 using Microsoft.IdentityModel.Tokens;
@@ -18,19 +21,22 @@ namespace ESI.Sharp
 {
     public class Authorization
     {
+        private readonly CharacterEndpoint _characterEndpoint;
         private readonly RestClient _authorizationClient;
         private readonly EsiConfig _config;
         private readonly string _ssoUrl;
 
-        public Authorization(EsiConfig config, string ssoUrl = "login.eveonline.com")
+        public Authorization(RestClient restEndpointClient, EsiConfig config, string ssoUrl = "login.eveonline.com")
         {
             _config = config;
             _ssoUrl = ssoUrl;
-            
+
             _authorizationClient = new RestClient($"https://{_ssoUrl}/")
             {
                 Authenticator = new HttpBasicAuthenticator(_config.ClientId, _config.SecretKey)
             };
+
+            _characterEndpoint = new CharacterEndpoint(restEndpointClient, null);
         }
 
         /// <summary>
@@ -49,7 +55,7 @@ namespace ESI.Sharp
             {
                 var list = new List<string>();
                 foreach (var scope in scopes) list.Add(scope.GetEnumMemberAttribute());
-                
+
                 url = $"{url}&scope={string.Join("%20", list)}";
             }
 
@@ -78,7 +84,7 @@ namespace ESI.Sharp
             }
 
             var restRequest = new RestRequest("/v2/oauth/token", Method.Post).AddHeader("Content-Type", "application/x-www-form-urlencoded")
-                                                                    .AddStringBody(body, DataFormat.None);
+                                                                             .AddStringBody(body, DataFormat.None);
 
             var response = await _authorizationClient.ExecuteAsync(restRequest);
 
@@ -99,7 +105,7 @@ namespace ESI.Sharp
             var body = $"token_type_hint={TokenGrantType.RefreshToken.GetEnumMemberAttribute()}&token={Uri.EscapeDataString(refreshToken)}";
 
             var restRequest = new RestRequest("/v2/oauth/revoke", Method.Post).AddHeader("Content-Type", "application/x-www-form-urlencoded")
-                                                                     .AddStringBody(body, DataFormat.None);
+                                                                              .AddStringBody(body, DataFormat.None);
 
             var response = await _authorizationClient.ExecuteAsync(restRequest);
 
@@ -115,7 +121,7 @@ namespace ESI.Sharp
         public async Task<ValidatedToken> ValidateToken(Token token)
         {
             if (token == null) throw new ArgumentNullException(nameof(token));
-            
+
             var oauthJwksRequest = new RestRequest("/oauth/jwks");
             var oauthJwksResponse = await _authorizationClient.ExecuteAsync(oauthJwksRequest);
             var jsonWebKeySet = new JsonWebKeySet(oauthJwksResponse.Content);
@@ -139,13 +145,27 @@ namespace ESI.Sharp
             var returnedScopes = jwtValidatedToken.Claims.Where(c => c.Type == "scp");
             var scopesClaim = string.Join(" ", returnedScopes.Select(s => s.Value));
 
+            var characterId = int.Parse(subjectClaim.Split(':').Last());
+            var characterAffiliation = await _characterEndpoint.ExecutePublicEndpointAsync<List<CharacterAffiliation>>(new RestRequest("/characters/affiliation/", Method.Post).AddJsonBody(new[] { characterId }));
+
+            var corporationId = 0;
+            var allianceId = 0;
+
+            if (characterAffiliation.StatusCode == HttpStatusCode.OK)
+            {
+                corporationId = characterAffiliation.Data[0].CorporationId;
+                allianceId = characterAffiliation.Data[0].AllianceId;
+            }
+
             return new ValidatedToken
             {
                 RefreshToken = token.RefreshToken,
                 AccessToken = token.AccessToken,
                 CharacterName = nameClaim,
+                CharacterCorporationId = corporationId,
+                CharacterAllianceId = allianceId,
                 CharacterOwnerHash = ownerClaim,
-                CharacterID = int.Parse(subjectClaim.Split(':').Last()),
+                CharacterID = characterId,
                 ExpiresOn = jwtValidatedToken.ValidTo,
                 Scopes = scopesClaim
             };

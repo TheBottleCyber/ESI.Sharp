@@ -11,7 +11,7 @@ namespace ESI.Sharp.Endpoints
     public class AllianceEndpoint : EndpointBase
     {
         public AllianceEndpoint(RestClient restClient, ValidatedToken validatedToken) : base(restClient, validatedToken) { }
-        
+
         /// <summary>
         /// List all alliances <br/><br/>
         /// /alliances/ <br/><br/>

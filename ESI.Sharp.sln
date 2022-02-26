@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESI.Sharp", "ESI.Sharp\ESI.Sharp.csproj", "{6ADE83A6-7F9F-44C9-8F70-EDB86CDD6846}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESI.Console", "ESI.Console\ESI.Console.csproj", "{094DD5DC-820D-43F5-8AC9-4038D25CA3D2}"
+EndProject
 
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,5 +16,9 @@ Global
 		{6ADE83A6-7F9F-44C9-8F70-EDB86CDD6846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ADE83A6-7F9F-44C9-8F70-EDB86CDD6846}.Release|Any CPU.Build.0 = Release|Any CPU
 		
+		{094DD5DC-820D-43F5-8AC9-4038D25CA3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094DD5DC-820D-43F5-8AC9-4038D25CA3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094DD5DC-820D-43F5-8AC9-4038D25CA3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094DD5DC-820D-43F5-8AC9-4038D25CA3D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
