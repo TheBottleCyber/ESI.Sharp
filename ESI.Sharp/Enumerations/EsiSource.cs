@@ -13,10 +13,12 @@ namespace ESI.Sharp.Models.Enumerations
         /// EVE Online test server
         /// </summary>
         [EnumMember(Value = "singularity")] Singularity,
+
         /// <summary>
         /// EVE Online default server
         /// </summary>
         [EnumMember(Value = "tranquility")] Tranquility,
+
         /// <summary>
         /// EVE Online special server for China players
         /// </summary>

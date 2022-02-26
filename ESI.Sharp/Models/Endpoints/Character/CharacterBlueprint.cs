@@ -46,7 +46,7 @@ namespace ESI.Sharp.Models.Endpoints.Character
         /// </summary>
         [JsonProperty("time_efficiency")]
         public int TimeEfficiency { get; set; }
-        
+
         [JsonProperty("type_id")]
         public int TypeId { get; set; }
     }

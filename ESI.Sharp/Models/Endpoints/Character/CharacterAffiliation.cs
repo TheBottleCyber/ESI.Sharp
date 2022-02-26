@@ -24,7 +24,7 @@ namespace ESI.Sharp.Models.Endpoints.Character
         /// </summary>
         [JsonProperty("corporation_id")]
         public int CorporationId { get; set; }
-        
+
         /// <summary>
         /// The character’s faction ID, if their corporation is in a faction
         /// </summary>

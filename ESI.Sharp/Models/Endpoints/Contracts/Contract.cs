@@ -138,9 +138,6 @@ namespace ESI.Sharp.Models.Endpoints.Contracts
         [JsonProperty("volume")]
         public double Volume { get; set; }
 
-        public Contract()
-        {
-            
-        }
+        public Contract() { }
     }
 }

@@ -20,7 +20,7 @@ namespace ESI.Sharp
         /// SSO Authorization
         /// </summary>
         public Authorization Authorization { get; set; }
-        
+
         public AllianceEndpoint Alliance { get; set; }
         public AssetsEndpoint Assets { get; set; }
         public StatusEndpoint Status { get; set; }
@@ -82,7 +82,7 @@ namespace ESI.Sharp
                                                            .AddDefaultHeader("Cache-Control", "no-cache")
                                                            .UseNewtonsoftJson()
                                                            .AddDefaultQueryParameter("datasource", esiConfig.EsiSource.ToString().ToLower());
-            
+
             Authorization = new Authorization(_restClient, esiConfig);
 
             InitializeEsiEndpoints();

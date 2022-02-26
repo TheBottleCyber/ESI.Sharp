@@ -34,14 +34,14 @@ namespace ESI.Sharp.Models
         /// Secret Key property from ESI application authentication settings
         /// </summary>
         /// <exception cref="ArgumentException">throws when trying set field null or empty</exception>
-        public string SecretKey 
+        public string SecretKey
         {
             get => _secretKey;
             set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(SecretKey));
-                
+
                 _secretKey = value;
             }
         }
@@ -57,7 +57,7 @@ namespace ESI.Sharp.Models
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(CallbackUrl));
-                
+
                 _callbackUrl = value;
             }
         }
@@ -73,7 +73,7 @@ namespace ESI.Sharp.Models
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(UserAgent));
-                
+
                 _userAgent = value;
             }
         }
@@ -89,11 +89,11 @@ namespace ESI.Sharp.Models
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("EsiConfig constructor parameter cannot be null or empty", nameof(EsiEndpoint));
-                
+
                 _esiEndpoint = value;
             }
         }
-        
+
         /// <summary>
         /// Specifies which server to call the endpoints from, default is Tranquility
         /// </summary>
@@ -114,7 +114,7 @@ namespace ESI.Sharp.Models
         /// <param name="userAgent"><see cref="UserAgent"/> property needs to be setted so that the developers of eve online know what kind of application it is</param>
         /// <param name="esiEndpoint"><see cref="EsiEndpoint"/> property is endpoint to ESI api definition, default is https://esi.evetech.net/</param>
         /// <param name="esiSource"><see cref="EsiSource"/> property specifies which server to call the endpoints from, default is Tranquility</param>
-        public EsiConfig(string clientId, string secretKey, string callbackUrl, string userAgent, 
+        public EsiConfig(string clientId, string secretKey, string callbackUrl, string userAgent,
             string esiEndpoint = "https://esi.evetech.net/latest/", EsiSource esiSource = EsiSource.Tranquility)
         {
             ClientId = clientId;
