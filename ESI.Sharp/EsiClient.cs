@@ -8,6 +8,9 @@ using RestSharp.Serializers.NewtonsoftJson;
 
 namespace ESI.Sharp
 {
+    /// <summary>
+    /// REST ESI API Client
+    /// </summary>
     public class EsiClient
     {
         private ValidatedToken _requestToken;
@@ -17,31 +20,39 @@ namespace ESI.Sharp
         /// SSO Authorization
         /// </summary>
         public Authorization Authorization { get; set; }
-
-        /// <summary>
-        /// Alliance endpoint /alliances/
-        /// </summary>
+        
         public AllianceEndpoint Alliance { get; set; }
-
-        /// <summary>
-        /// Assets endpoint /characters/{character_id}/assets/
-        /// </summary>
         public AssetsEndpoint Assets { get; set; }
-
-        /// <summary>
-        /// Status endpoint /status/
-        /// </summary>
         public StatusEndpoint Status { get; set; }
-
-        /// <summary>
-        /// Character endpoint /characters/
-        /// </summary>
         public CharacterEndpoint Character { get; set; }
-
-        /// <summary>
-        /// Contracts endpoint /contracts/
-        /// </summary>
         public ContractsEndpoint Contracts { get; set; }
+        public BookmarksEndpoint Bookmarks { get; set; }
+        public CalendarEndpoint Calendar { get; set; }
+        public ClonesEndpoint Clones { get; set; }
+        public ContactsEndpoint Contacts { get; set; }
+        public CorporationEndpoint Corporation { get; set; }
+        public DogmaEndpoint Dogma { get; set; }
+        public FactionWarfareEndpoint FactionWarfare { get; set; }
+        public FittingsEndpoint Fittings { get; set; }
+        public FleetsEndpoint Fleets { get; set; }
+        public IncursionsEndpoint Incursions { get; set; }
+        public IndustryEndpoint Industry { get; set; }
+        public InsuranceEndpoint Insurance { get; set; }
+        public KillmailsEndpoint Killmails { get; set; }
+        public LocationEndpoint Location { get; set; }
+        public LoyaltyEndpoint Loyalty { get; set; }
+        public MailEndpoint Mail { get; set; }
+        public MarketEndpoint Market { get; set; }
+        public OpportunitiesEndpoint Opportunities { get; set; }
+        public PlanetaryEndpoint Planetary { get; set; }
+        public RoutesEndpoint Routes { get; set; }
+        public SearchEndpoint Search { get; set; }
+        public SkillsEndpoint Skills { get; set; }
+        public SovereigntyEndpoint Sovereignty { get; set; }
+        public UIEndpoint UserInterface { get; set; }
+        public UniverseEndpoint Universe { get; set; }
+        public WalletEndpoint Wallet { get; set; }
+        public WarsEndpoint Wars { get; set; }
 
         /// <summary>
         /// Initialize ESI api client by <see cref="EsiConfig"/>
@@ -97,6 +108,33 @@ namespace ESI.Sharp
             Character = new CharacterEndpoint(_restClient, _requestToken);
             Contracts = new ContractsEndpoint(_restClient, _requestToken);
             Assets = new AssetsEndpoint(_restClient, _requestToken);
+            Bookmarks = new BookmarksEndpoint(_restClient, _requestToken);
+            Calendar = new CalendarEndpoint(_restClient, _requestToken);
+            Clones = new ClonesEndpoint(_restClient, _requestToken);
+            Contacts = new ContactsEndpoint(_restClient, _requestToken);
+            Corporation = new CorporationEndpoint(_restClient, _requestToken);
+            Dogma = new DogmaEndpoint(_restClient, _requestToken);
+            FactionWarfare = new FactionWarfareEndpoint(_restClient, _requestToken);
+            Fittings = new FittingsEndpoint(_restClient, _requestToken);
+            Fleets = new FleetsEndpoint(_restClient, _requestToken);
+            Incursions = new IncursionsEndpoint(_restClient, _requestToken);
+            Industry = new IndustryEndpoint(_restClient, _requestToken);
+            Insurance = new InsuranceEndpoint(_restClient, _requestToken);
+            Killmails = new KillmailsEndpoint(_restClient, _requestToken);
+            Location = new LocationEndpoint(_restClient, _requestToken);
+            Loyalty = new LoyaltyEndpoint(_restClient, _requestToken);
+            Mail = new MailEndpoint(_restClient, _requestToken);
+            Market = new MarketEndpoint(_restClient, _requestToken);
+            Opportunities = new OpportunitiesEndpoint(_restClient, _requestToken);
+            Planetary = new PlanetaryEndpoint(_restClient, _requestToken);
+            Routes = new RoutesEndpoint(_restClient, _requestToken);
+            Search = new SearchEndpoint(_restClient, _requestToken);
+            Skills = new SkillsEndpoint(_restClient, _requestToken);
+            Sovereignty = new SovereigntyEndpoint(_restClient, _requestToken);
+            UserInterface = new UIEndpoint(_restClient, _requestToken);
+            Universe = new UniverseEndpoint(_restClient, _requestToken);
+            Wallet = new WalletEndpoint(_restClient, _requestToken);
+            Wars = new WarsEndpoint(_restClient, _requestToken);
         }
     }
 }
