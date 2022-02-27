@@ -34,7 +34,7 @@ namespace ESI.Sharp.Endpoints
         /// <br/><c>Requires the following scope: esi-assets.read_assets.v1 </c>
         /// </summary>
         /// <returns>Locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)</returns>
-        public async Task<EsiResponse<List<AssetsItemLocation>>> CharacterAssetsLocations(IEnumerable<long> itemIds)
+        public async Task<EsiResponse<List<AssetsItemLocation>>> CharacterAssetsLocations(params long[] itemIds)
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/assets/locations/", Method.Post).AddUrlSegment("character_id", _validatedToken.CharacterID)
                                                                                                               .AddJsonBody(itemIds);
@@ -49,7 +49,7 @@ namespace ESI.Sharp.Endpoints
         /// <br/><c>Requires the following scope: esi-assets.read_assets.v1 </c>
         /// </summary>
         /// <returns>Names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships</returns>
-        public async Task<EsiResponse<List<AssetsItemName>>> CharacterAssetsNames(IEnumerable<long> itemIds)
+        public async Task<EsiResponse<List<AssetsItemName>>> CharacterAssetsNames(params long[] itemIds)
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/assets/names/", Method.Post).AddUrlSegment("character_id", _validatedToken.CharacterID)
                                                                                                           .AddJsonBody(itemIds);
@@ -81,7 +81,7 @@ namespace ESI.Sharp.Endpoints
         /// <br/><c>Requires the following scope: esi-assets.read_corporation_assets.v1 </c>
         /// </summary>
         /// <returns>Locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)</returns>
-        public async Task<EsiResponse<List<AssetsItemLocation>>> CorporationAssetsLocations(IEnumerable<long> itemIds)
+        public async Task<EsiResponse<List<AssetsItemLocation>>> CorporationAssetsLocations(params long[] itemIds)
         {
             var endpointRequest = new RestRequest("/corporations/{corporation_id}/assets/locations/", Method.Post).AddUrlSegment("corporation_id", _validatedToken.CharacterCorporationId)
                                                                                                                   .AddJsonBody(itemIds);
@@ -97,7 +97,7 @@ namespace ESI.Sharp.Endpoints
         /// <br/><c>Requires the following scope: esi-assets.read_corporation_assets.v1 </c>
         /// </summary>
         /// <returns>Names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships</returns>
-        public async Task<EsiResponse<List<AssetsItemName>>> CorporationAssetsNames(IEnumerable<long> itemIds)
+        public async Task<EsiResponse<List<AssetsItemName>>> CorporationAssetsNames(params long[] itemIds)
         {
             var endpointRequest = new RestRequest("/corporations/{corporation_id}/assets/names/", Method.Post).AddUrlSegment("corporation_id", _validatedToken.CharacterCorporationId)
                                                                                                               .AddJsonBody(itemIds);

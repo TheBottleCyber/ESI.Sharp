@@ -34,7 +34,7 @@ namespace ESI.Sharp.Endpoints
         /// </summary>
         /// <param name="characterIds">The character IDs to fetch affiliations for. All characters must exist, or none will be returned</param>
         /// <returns>Characters corporations, alliances and factions IDs</returns>
-        public async Task<EsiResponse<List<CharacterAffiliation>>> Affiliation(IEnumerable<int> characterIds)
+        public async Task<EsiResponse<List<CharacterAffiliation>>> Affiliation(params int[] characterIds)
         {
             var endpointRequest = new RestRequest("/characters/affiliation/", Method.Post).AddJsonBody(characterIds);
 
@@ -118,7 +118,7 @@ namespace ESI.Sharp.Endpoints
         /// <br/><c>Requires the following scope: esi-characters.read_contacts.v1 </c>
         /// </summary>
         /// <returns>List of blueprints the character owns</returns>
-        public async Task<EsiResponse<float>> CalculateCspa(IEnumerable<int> characterIds)
+        public async Task<EsiResponse<float>> CalculateCspa(params int[] characterIds)
         {
             var endpointRequest = new RestRequest("/characters/{character_id}/cspa/", Method.Post).AddUrlSegment("character_id", _validatedToken.CharacterID)
                                                                                                   .AddJsonBody(characterIds);
